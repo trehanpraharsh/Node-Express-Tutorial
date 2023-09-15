@@ -1,9 +1,9 @@
-const amount = 12;
+//* OS Module - Gives us the liberty to interact with the Operating System and also the Server
 
-if (amount < 10) {
-  console.log("small number");
-} else {
-  console.log("large number");
-}
+//! Since it is a built-in module, we don't need to install it seperately. We need to install other third-party modules seperately.
 
-console.log(`Heyy! This is my first Node App`);
+const os = require("os");
+
+//? Get info about the User
+const user = os.userInfo();
+console.log(user);
