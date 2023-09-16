@@ -1,18 +1,14 @@
-//* PATH Module
+//* npm -> global command, comes with node
+//* npm --version
 
-const path = require("path");
+//* Local Dependency -> use it only in this particular project
+//* npm i <packageName>
 
-//? Path Seperator
-console.log(path.sep);
+//* Global Dependency -> use it in any project
+//* npm install -g <packageName>
+//* sudo npm install -g <packageName> (mac)
 
-//? The joined filed path
-const filePath = path.join("/content", "subfolder", "test.txt");
-console.log(filePath);
-
-//? To get the name of the base file or the innermost or most frequent file
-const base = path.basename(filePath);
-console.log(base);
-
-//? To get the absolute path of the file, i.e. proper location
-const absolute = path.resolve(__dirname, "content", "subfolder", "test.txt");
-console.log(absolute);
+//* package.json -> manifest file (stores important information about project/packages)
+//* manual approach -> create "package.json" in the root and create properties etc.
+//* npm init -> step by step way to create "package.json" file, press 'enter' to skip
+//* npm init -y -> saying yes to everything, creating a default "package.json" file
