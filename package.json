@@ -1,0 +1,23 @@
+{
+  "name": "express-tutorial",
+  "version": "1.0.0",
+  "description": "Learning Node and Express by following a Tutorial on Youtube by John Smilga, also uploaded on freecodecamp.",
+  "main": "1-intro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trehanpraharsh/Node-Express-Tutorial.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trehanpraharsh/Node-Express-Tutorial/issues"
+  },
+  "homepage": "https://github.com/trehanpraharsh/Node-Express-Tutorial#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

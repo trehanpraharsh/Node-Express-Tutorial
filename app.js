@@ -12,3 +12,9 @@
 //* manual approach -> create "package.json" in the root and create properties etc.
 //* npm init -> step by step way to create "package.json" file, press 'enter' to skip
 //* npm init -y -> saying yes to everything, creating a default "package.json" file
+
+const _ = require("lodash");
+
+const items = [1, [2, [3], [4, [5]]]];
+const newItems = _.flattenDeep(items);
+console.log(newItems);
