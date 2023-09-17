@@ -1,10 +1,9 @@
 {
-  "name": "express-tutorial",
+  "name": "node-express-tutorial",
   "version": "1.0.0",
   "description": "Learning Node and Express by following a Tutorial on Youtube by John Smilga, also uploaded on freecodecamp.",
-  "main": "1-intro.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +18,8 @@
   "homepage": "https://github.com/trehanpraharsh/Node-Express-Tutorial#readme",
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

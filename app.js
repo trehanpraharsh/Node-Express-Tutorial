@@ -1,5 +1,8 @@
 //* npm -> global command, comes with node
-//* npm --version
+//* npm --version\
+
+//* Installing any repo as dev dependency (The dependencies we are using while building)
+//* Syntax :- npm install <packageName> --save-dev (or -D)
 
 //* Local Dependency -> use it only in this particular project
 //* npm i <packageName>
@@ -18,3 +21,4 @@ const _ = require("lodash");
 const items = [1, [2, [3], [4, [5]]]];
 const newItems = _.flattenDeep(items);
 console.log(newItems);
+console.log("Hello World");
