@@ -1,24 +1,49 @@
-//* We don't need to install path module seperately as it already comes installed with node
-//* This is done to pass the exact path of our navbar app (index.html) file.
-const path = require("path");
-
 const express = require("express");
 const app = express();
 
-//! With the use of app.use() method passing express.static we can specify the path of the static resources which we want our server to have access to.
-//? It is a convention or good practice to have the common files seperately in a folder called public
-//? Static method for static files (maybe) will know about this later in the course
-app.use(express.static("./public"));
+const { products } = require("./data");
 
-//? We'll be using the sendFile method here
 app.get("/", function (req, res) {
-  res.status(200).sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
+  res.send('<h1>Home Page</h1><a href="/api/products">Products</a>');
 });
 
-app.all("*", function (req, res) {
-  res.status(404).send("Resource not found");
+app.get("/api/products", function (req, res) {
+  const newProducts = products.map((product) => {
+    const { id, name, image } = product;
+    return { id, name, image };
+  });
+  res.json(newProducts);
+});
+
+//* ":name" is used for routing and it can be read from req.params method, this will hold the value of parameter. By default the parameter is string
+app.get("/api/products/:productID", function (req, res) {
+  //   console.log(req.params);
+  const { productID } = req.params;
+
+  const singleProduct = products.find(
+    (product) =>
+      // console.log(product.id);
+      // console.log(Number(productID));
+      product.id == Number(productID)
+  );
+
+  //   console.log(singleProduct);
+  if (!singleProduct) {
+    return res.status(404).send("Product does not Exist");
+  }
+
+  return res.json(singleProduct);
+});
+
+//* This method is generally used to filter results  etc for websites
+app.get("/api/products/:productID/reviews/:reviewID", function (req, res) {
+  // console.log(req.params);
+  const { productID, reviewID } = req.params;
+  res.send(
+    `Hello to the World of Reviews for productID : ${productID} and reviewID : ${reviewID}`
+  );
 });
 
 app.listen(6969, function () {
-  console.log("Server is running at port : 6969...");
+  console.log("Server is running on port 6969...");
 });
