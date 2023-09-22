@@ -1,21 +1,45 @@
-//* We can solve the problem of passing the middleware function into each get method by using app.use as this is use to pass something as a middleware.
-
 const express = require("express");
 const app = express();
-const logger = require("./logger");
+let { people } = require("./data");
 
-//? We can also pass another parameter into this before the function which is the path.
-//? Eg:- if we passs '/api' as the path then the middleware will only work for url/api/<anything>, and not be applicable for other routes
-app.use(logger);
+//? Static Assets
+app.use(express.static("./methods-public"));
 
-app.get("/", (req, res) => {
-  res.send("Home Page");
+//? 'express.urlencoded()' is a built in middleware function which parses the incoming urlencoded payloads and is based on body parser
+//! To parse form data
+app.use(express.urlencoded({ extended: false }));
+
+//! To parse Json - After using this now we have access to the name we passed in our JavaScript example of Post Method
+app.use(express.json());
+
+//* GET Method - Read Data (by default, it gets executed everytime)
+app.get("/api/people", function (req, res) {
+  res.status(200).json({ success: true, data: people });
 });
 
-app.get("/about", (req, res) => {
-  res.send("About Page");
+//* POST Method - Insert Data
+//? Form example
+app.post("/login", function (req, res) {
+  // console.log(req.body);
+  const { name } = req.body;
+  if (name) {
+    return res.status(200).send(`Welcome ${name}`);
+  }
+  res.status(401).send("Please Provide Correct Credentials");
 });
 
-app.listen(6969, () => {
-  console.log("Server is running on port 6969...");
+//? JavaScript Example
+app.post("/api/people", function (req, res) {
+  const { name } = req.body;
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please provide Name value" });
+  }
+  // res.status(201).send("Success"); Don't do this as the return type needs to be same
+  res.status(201).json({ success: true, person: name });
+});
+
+app.listen(6969, function () {
+  console.log("Server is running on the port 6969...");
 });
